@@ -1,78 +1,103 @@
-:root{
-    --blanco:#fff;
+/* -----------------------------------------------------------
+   1. VARIABLES Y CONFIGURACIÓN INICIAL
+----------------------------------------------------------- */
+:root {
+    --blanco: #fff;
     --invierno: #f0efeb;
     --beige: #e7dbd6;
-    --cafeoscuro:#674c39;
-    --cafe:#b59784;
-    --cafeclaro:#b9ac9d;
+    --cafeoscuro: #674c39;
+    --cafe: #b59784;
+    --cafeclaro: #b9ac9d;
     --verdoso: #dad1bb;
-    --titulos:#745f50;
+    --titulos: #745f50;
+}
 
-}
-/* --------------------    ESTILOS GENERALES    --------------- */
-html{
-    font-size: 62.5%;
+html {
+    font-size: 62.5%; /* 1rem = 10px */
     box-sizing: border-box;
-    *, *:before, *:after{
-        box-sizing: inherit;
-    }
 }
-body{
+
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+
+body {
     color: var(--cafe);
-    font-size: 1.5rem;
+    font-size: 1.6rem; /* 16px */
     font-family: "Slabo 13px", serif;
     font-weight: 400;
-    background-image: linear-gradient(to top, var(--blanco) 0%, var(--beige) 100%);
+    line-height: 1.5;
+    background-image: linear-gradient(to top, var(--blanco) 10%, var(--beige) 100%);
+    margin: 0;
 }
 
-h1{
+/* -----------------------------------------------------------
+   2. ESTILOS GLOBALES (Tipografía y Componentes)
+----------------------------------------------------------- */
+h1, h2, h3 {
+    text-align: center;
+    margin: 2rem 0;
+}
+
+h1 {
     color: var(--titulos);
     font-size: 4.5rem;
-    text-align: center;
-    margin-top: 2rem;
     font-family: "Playfair Display", serif;
-    font-optical-sizing: auto;
 }
-h1,h2,h3{
-    text-align: center;
-}
-/* --------------------    ESTILOS PARA EL HEADER    --------------- */
 
-.titulo span{
-    font-size: 2.5rem;
-    color: var(--cafeoscuro);
+h2 {
+    font-size: 3.5rem;
 }
-.contenedor{
+
+.contenedor {
+    width: 95%;
     max-width: 120rem;
     margin: 0 auto;
 }
-.boton{
-    background-color: var(--titulos);
+
+/* Botón Genérico */
+.boton {
+    display: inline-block;
+    background-color: var(--cafe);
     color: var(--blanco);
     padding: 1rem 3rem;
     margin-top: 2rem;
+    font-size: 2rem;
     text-decoration: none;
     border-radius: 0.5rem;
     font-size: 1.6rem;
     text-transform: uppercase;
-    font-weight: 500;
+    font-weight: bold;
     text-align: center;
-    width:30%;
+    transition: background-color 0.3s ease;
+    border:none;
+    width: 90%;
+    text-align: center;
 }
-@media (min-width: 480px) {
-    .boton{
-        width: auto;
 
+.boton:hover {
+    background-color: var(--cafeoscuro);
+    cursor:pointer;
+}
+
+@media (min-width: 480px) {
+    .boton {
+        width: auto;
     }
 }
+
+/* Utilidad de Sombra */
 .sombra {
     box-shadow: 0px 10px 15px -3px rgba(0,0,0,0.1), 
                 0px 4px 6px -2px rgba(0,0,0,0.05);
-    background-color: #ffffff; /* Importante para que la sombra se vea */
+    background-color: var(--blanco);
     padding: 2rem;
     border-radius: 1rem;
 }
 
+/* -----------------------------------------------------------
+   3. HEADER (Encabezado Principal)
+----------------------------------------------------------- */
 header {
     background-image: linear-gradient(
                         rgba(234, 224, 224, 0.7), 
@@ -81,109 +106,240 @@ header {
                       url(../img/bannerprinicpal.png);
     background-size: cover;
     background-position: center;
-    padding: 0.5rem;
-}
-.ubicacion{
-    display: flex;
-    align-items: flex-end;
-    
+    padding: 2rem 0.5rem;
 }
 
-/* --------------------    NAVBAR     --------------- */
-
-.contenedor {
-    width: 95%; /* En móviles no usamos rem fijos para que no se corte */
-    max-width: 120rem; /* Límite para pantallas grandes */
-    margin: 0 auto;
+.titulo span {
+    font-size: 2.5rem;
+    color: var(--cafeoscuro);
+    display: block; /* Para que el "Desarrolladora" baje en móviles */
 }
 
+/* -----------------------------------------------------------
+   4. NAVEGACIÓN (Navbar)
+----------------------------------------------------------- */
 .navbar {
-    background-color: var(--cafeclaro);
-
+    background-color: var(--beige);
+    margin: 1rem auto;      /* Crea el espacio arriba/abajo (2rem) y lo centra */
+    padding: 1rem 0;        /* Espacio interno arriba y abajo de los enlaces */
+    width: 90%;             /* Al reducir el ancho, se crean los espacios a los lados */
+    max-width: 120rem;      /* Mantiene la armonía con tu contenedor principal */
+    border-radius: 1rem;    /* Opcional: le da un toque moderno al redondear las esquinas */
 }
+
 .navegacion ul {
     list-style: none;
     padding: 0;
-    margin: 0.2rem 0;
+    margin: 0;
     display: flex;
-    flex-direction: column; /* En móvil, uno arriba del otro */
+    flex-direction: column; /* Móvil: Vertical */
     text-align: center;
 }
 
 .navegacion a {
-    display: block; /* Para que el área de clic sea toda la línea */
+    display: block;
     padding: 1.5rem;
     color: var(--cafeoscuro);
     text-decoration: none;
-    font-size: 1.6rem;
+    font-size: 1.8rem;
     font-weight: 700;
-    border-bottom: 1px solid var(--cafeclaro); /* Separador visual en móvil */
+    border-bottom: 1px solid rgba(0,0,0,0.1);
 }
 
 .navegacion a:hover {
     background-color: var(--cafe);
     color: var(--blanco);
     transition: all 0.3s ease;
-    text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.863);
 }
 
+/* Responsive Navbar (Tablet/PC) */
+@media (min-width: 768px) {
+    .navegacion ul {
+        flex-direction: row; /* Horizontal */
+        justify-content: center;
+        gap: 2rem;
+    }
+    .navegacion a {
+        border-bottom: none;
+        padding: 1.5rem 2rem;
+    }
+}
 
-/* --------------------    SUBTITULO    --------------- */
-.subtitulo{
-    font-family: "Playfair Display", serif;
-    font-optical-sizing: auto;
-    font-size: 3rem;
-    color: var(--cafe);
-    text-shadow: 2px 2px 4px rgba(239, 230, 225, 0.863);}
-
-
-.hero{
+/* -----------------------------------------------------------
+   5. HERO SECTION
+----------------------------------------------------------- */
+.hero {
     background-image: url(../img/banner.png);
     background-repeat: no-repeat;
     background-size: cover;
     height: 450px;
     position: relative;
     margin-bottom: 2.5rem;
-    
-
 }
-.contenido-hero{
+
+.contenido-hero {
     position: absolute;
-   background-color:rgba(234, 224, 224, 0.7); /**transparecia*/
-   width:100%;
-   height:100%;
+    background-color: rgba(234, 224, 224, 0.7);
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.subtitulo {
+    font-family: "Playfair Display", serif;
+    font-size: 4rem;
+    color: var(--cafeoscuro);
+    margin: 0;
+    text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.5);
+}
+
+.ubicacion {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.ubicacion p {
+    color: var(--cafeoscuro);
+    font-weight: 700;
+    margin: 0;
+}
+
+/* -----------------------------------------------------------
+   6. SERVICIOS (Grid Layout)
+----------------------------------------------------------- */
+.servicios {
+    padding: 2rem 0;
+}
+
+@media (min-width: 768px) {
+    .servicios {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 3rem;
+    }
+}
+
+.servicio {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.servicio h3 {
+    color: var(--cafeoscuro);
+}
+
+.servicio p {
+    line-height: 1;
+}
+.servicio .icono {
+   height: 15rem;
+   width: 15rem;
+   background-color: var(--verdoso);
+   border-radius: 50%;
    display:flex;
-   flex-direction: column;
-   align-items: center; /** centrar el contenido*/
-   justify-content: center;/** centrar el contenido*/
+   justify-content: center;
+   align-items: center;
+
 }
-.contenido-hero h2,
-.contenido-hero p{
+/* -----------------------------------------------------------
+FORMULARIO
+----------------------------------------------------------- */
+.formulario {
+    background-color: var(--blanco);
+    padding: 3rem;
+    border-radius: 1rem;
+    box-shadow: 0px 10px 15px -3px rgba(109, 91, 91, 0.1), 
+                0px 4px 6px -2px rgba(0,0,0,0.05);
+    
+    /* CAMBIO AQUÍ: Ahora usa el mismo ancho que servicios */
+    width: 95%;             /* Margen a los lados en móviles */
+    max-width: 120rem;      /* El mismo que tu clase .contenedor */
+    margin: 5rem auto;      /* Lo separa de arriba y lo centra */
+}
+
+.formulario fieldset {
+    border: none;
+    padding: 0; /* Quitamos paddings extra del navegador */
+}
+
+.formulario legend {
+    text-align: center;
+    font-size: 2.2rem;
+    text-transform: uppercase;
+    font-family: "Playfair Display", serif;
+    color: var(--titulos);
+    margin-bottom: 2rem;
+   
+}
+.contenedor-campos {
+  
+}
+
+.campo {
+    margin-bottom: 1rem;
+  
+}
+
+.campo label {
+    color: var(--cafe);
+    font-weight: bold;
+    margin-bottom: .5rem;
+    display: block;
+   
+}
+.input-text {
+    width: 100%;
+    padding: 1.5rem;
+    border: 2px solid var(--beige); /* Usamos tu variable de color */
+    border-radius: 0.5rem;
+    outline: none; /* Quitamos el borde azul que pone Chrome a veces */
+    transition: border-color 0.3s ease; /* Para que el cambio de color sea suave */
+}
+.input-text:focus {
+    border: 2px solid var(--cafe); /* Se oscurece un poco para indicar que estás escribiendo */
+}
+.campo textarea {
+   height: 12rem;
+}
+
+.alinear-derecha {
+    display: flex;
+    justify-content: center; /* Centra el botón horizontalmente */
+    margin-top: 2rem;
+}
+/* Contenedor que agrupa todos los inputs */
+@media (min-width: 768px) {
+    .contenedor-campos {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr); /* Crea 2 columnas iguales */
+        column-gap: 2rem; /* Espacio entre columnas */
+    }
+
+    /* Hacemos que el campo de Mensaje ocupe las 2 columnas */
+  .campo:nth-child(3),
+    .campo:nth-child(4) {
+        grid-column: 1 / 3;
+    }
+}
+/* -----------------------------------------------------------
+    FOOTER
+----------------------------------------------------------- */
+footer {
+    background-color: var(--cafeoscuro);
+    padding: 2rem 0;
+    margin-top: 3rem;
+}
+
+footer p {
     color: var(--blanco);
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-}
-
-
-/* --------------------    SERVICIOS   --------------- */
-.servicios{
-    display: grid;
-    grid-template-columns: repeat(3, 1fr); /* Una columna por defecto */
-    grid-template-rows: 200px 200px;
-}
-@media (min-width: 768px) {
-
-/* --------------------    MEDIA QUERY (TABLET/PC)    --------------- */
-
-@media (min-width: 768px) {
-    .navegacion ul {
-        flex-direction: row; /* Se ponen horizontales */
-        justify-content: center;
-        gap: 2rem; /* Espaciado entre botones */
-    }
-
-    .navegacion a {
-        border-bottom: none; /* Quitamos la línea del móvil */
-        padding: 1rem 2rem;
-        border-radius: 0.5rem;
-    }
+    text-align: center;
+    margin: 0;
+    font-size: 1.4rem;
 }
