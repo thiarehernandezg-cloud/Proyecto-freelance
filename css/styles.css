@@ -5,11 +5,14 @@
     --blanco: #fff;
     --invierno: #f0efeb;
     --beige: #e7dbd6;
-    --cafeoscuro: #674c39;
-    --cafe: #b59784;
+    --rosado: #c9b6b4;
+    --rosadoclaro: #e7d9d2;
+    --cafe: #ae978a;
     --cafeclaro: #b9ac9d;
-    --verdoso: #dad1bb;
-    --titulos: #745f50;
+    --verdoso: #c3c1a8;
+    --titulos: #957b71;
+    --negro: #121212;
+    --fondo: #eceae3;
 }
 
 html {
@@ -27,7 +30,7 @@ body {
     font-family: "Slabo 13px", serif;
     font-weight: 400;
     line-height: 1.5;
-    background-image: linear-gradient(to top, var(--blanco) 10%, var(--beige) 100%);
+    background-color: var(--fondo);
     margin: 0;
 }
 
@@ -99,11 +102,7 @@ h2 {
    3. HEADER (Encabezado Principal)
 ----------------------------------------------------------- */
 header {
-    background-image: linear-gradient(
-                        rgba(234, 224, 224, 0.7), 
-                        rgba(225, 208, 208, 0.7)
-                      ), 
-                      url(../img/bannerprinicpal.png);
+   
     background-size: cover;
     background-position: center;
     padding: 2rem 0.5rem;
@@ -118,13 +117,13 @@ header {
 /* -----------------------------------------------------------
    4. NAVEGACIÓN (Navbar)
 ----------------------------------------------------------- */
+/* -----------------------------------------------------------
+   4. NAVEGACIÓN (Navbar Estilo Franja Delgada)
+----------------------------------------------------------- */
 .navbar {
-    background-color: var(--beige);
-    margin: 1rem auto;      /* Crea el espacio arriba/abajo (2rem) y lo centra */
-    padding: 1rem 0;        /* Espacio interno arriba y abajo de los enlaces */
-    width: 90%;             /* Al reducir el ancho, se crean los espacios a los lados */
-    max-width: 120rem;      /* Mantiene la armonía con tu contenedor principal */
-    border-radius: 1rem;    /* Opcional: le da un toque moderno al redondear las esquinas */
+    background-color: var(--rosado);
+    width: 100%;
+    padding: 0.5rem 0; /* Franja delgada */
 }
 
 .navegacion ul {
@@ -132,83 +131,138 @@ header {
     padding: 0;
     margin: 0;
     display: flex;
-    flex-direction: column; /* Móvil: Vertical */
-    text-align: center;
+    justify-content: flex-end; /* Alinea los links al extremo derecho */
+    gap: 2.5rem; /* Espacio entre cada link */
 }
 
 .navegacion a {
-    display: block;
-    padding: 1.5rem;
-    color: var(--cafeoscuro);
+    color: var(--blanco);
     text-decoration: none;
-    font-size: 1.8rem;
-    font-weight: 700;
-    border-bottom: 1px solid rgba(0,0,0,0.1);
+    font-size: 1.6rem; /* Letras un poco más pequeñas y finas */
+    font-weight: 300;  /* "Letras finas" según el ejemplo */
+    text-transform: uppercase;
+    letter-spacing: 1px; /* Un poco de aire entre letras para elegancia */
+    transition: opacity 0.3s ease;
 }
 
 .navegacion a:hover {
-    background-color: var(--cafe);
-    color: var(--blanco);
-    transition: all 0.3s ease;
+    opacity: 0.7; /* Efecto suave al pasar el mouse */
 }
 
-/* Responsive Navbar (Tablet/PC) */
-@media (min-width: 768px) {
+/* Ajuste para móviles: que sigan alineados o centrados si el espacio es poco */
+@media (max-width: 480px) {
     .navegacion ul {
-        flex-direction: row; /* Horizontal */
         justify-content: center;
-        gap: 2rem;
-    }
-    .navegacion a {
-        border-bottom: none;
-        padding: 1.5rem 2rem;
+        gap: 1.5rem;
     }
 }
-
 /* -----------------------------------------------------------
-   5. HERO SECTION
+   5. HERO CV (Nombre y Fotografía)
 ----------------------------------------------------------- */
-.hero {
-    background-image: url(../img/banner.png);
-    background-repeat: no-repeat;
-    background-size: cover;
-    height: 450px;
-    position: relative;
-    margin-bottom: 2.5rem;
-}
-
-.contenido-hero {
-    position: absolute;
-    background-color: rgba(234, 224, 224, 0.7);
-    width: 100%;
-    height: 100%;
+.hero-cv {
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding: 5rem 2rem;
+    gap: 3rem;
+}
+
+@media (min-width: 768px) {
+    .hero-cv {
+        flex-direction: row; /* Dos columnas en PC */
+        justify-content: space-between;
+        min-height: 500px;
+    }
+}
+
+.contenido-hero-izq {
+    flex: 1;
+    text-align: left;
+}
+
+.nombre-titulo {
+    font-size: 5rem;
+    color: var(--titulos);
+    margin-bottom: 1rem;
+    text-align: left; /* Alineado a la izq como el ejemplo */
+}
+
+.tagline {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: var(--cafe);
+    margin-bottom: 2rem;
+    text-transform: uppercase;
+}
+
+.extracto-perfil {
+    font-size: 1.6rem;
+    line-height: 1.8;
+    max-width: 500px;
+    margin-bottom: 3rem;
+}
+
+/* El recuadro para tu futura foto */
+.contenedor-foto-perfil {
+    flex: 1;
+    display: flex;
     justify-content: center;
 }
 
-.subtitulo {
-    font-family: "Playfair Display", serif;
-    font-size: 4rem;
-    color: var(--cafeoscuro);
-    margin: 0;
-    text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.5);
-}
-
-.ubicacion {
+.recuadro-foto {
+    width: 350px;
+    height: 400px;
+    background-color: var(--verdoso); 
     display: flex;
+    justify-content: center;
     align-items: center;
-    gap: 1rem;
-    margin-top: 1rem;
+    border-radius: 0.8rem;
+    
+    /* CAMBIO AQUÍ: Aumentamos el grosor y usamos un color que resalte */
+    border: 8px solid var(--verdoso); 
+    box-shadow: 0px 10px 20px rgba(0,0,0,0.1); /* Opcional: una sombra suave para dar profundidad */
 }
 
-.ubicacion p {
-    color: var(--cafeoscuro);
-    font-weight: 700;
-    margin: 0;
+.recuadro-foto span {
+    color: var(--blanco);
+    font-weight: bold;
+    text-transform: uppercase;
+}
+/* Estilo específico para la foto dentro del marco */
+.foto-perfil {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ajusta la foto sin deformarla */
+    object-position: top; 
+    border-radius: 0.4rem;
+    display: block;
 }
 
+/* Ajuste del recuadro para que contenga bien la imagen */
+.recuadro-foto {
+    width: 35rem; 
+    height: 45rem; /* Ajusté un poco el alto para fotos tipo CV */
+    background-color: var(--verdoso);
+    overflow: hidden; /* Corta cualquier excedente de la imagen */
+    border: 8px solid var(--verdoso);
+    box-shadow: 0px 10px 25px rgba(0,0,0,0.15);
+}
+
+/* Botón estilizado para esta sección */
+.boton-hero {
+    display: inline-block;
+    padding: 1.2rem 4rem;
+    background-color: var(--cafe);
+    color: var(--blanco);
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 0.3rem;
+    transition: background-color 0.3s;
+}
+
+.boton-hero:hover {
+    background-color: var(--titulos);
+}
 /* -----------------------------------------------------------
    6. SERVICIOS (Grid Layout)
 ----------------------------------------------------------- */
@@ -328,6 +382,77 @@ FORMULARIO
         grid-column: 1 / 3;
     }
 }
+/* --- ESTILOS DEL FORMULARIO --- */
+.formulario {
+    background-color: var(--blanco);
+    padding: 4rem; /* Un poco más de aire interno */
+    border-radius: 1.5rem;
+    box-shadow: 0px 10px 30px rgba(0,0,0,0.05); /* Sombra más suave y moderna */
+    margin: 8rem auto; /* Más espacio arriba para separarlo de "Cómo puedo ayudarte" */
+    max-width: 90rem; /* Un ancho más contenido lo hace ver más elegante */
+}
+
+.formulario h2 {
+    color: var(--titulos);
+    font-family: "Playfair Display", serif;
+    margin-bottom: 4rem;
+    font-size: 4rem;
+}
+
+.formulario fieldset {
+    border: none;
+    padding: 0;
+    margin: 0;
+}
+
+.campo label {
+    color: var(--cafe);
+    font-weight: bold;
+    font-size: 1.4rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 1rem;
+    display: block;
+}
+
+.input-text {
+    background-color: var(--fondo); /* Usamos el color de fondo para los inputs */
+    border: 1px solid var(--beige);
+    border-radius: 0.8rem;
+    padding: 1.5rem;
+    font-family: inherit;
+    transition: all 0.3s ease;
+}
+
+.input-text:focus {
+    border-color: var(--rosado);
+    outline: none;
+    background-color: var(--blanco);
+    box-shadow: 0 0 0 3px rgba(201, 182, 180, 0.2); /* Brillo sutil rosado al escribir */
+}
+
+/* El botón de enviar debe destacar */
+.formulario .boton {
+    width: auto; /* Que no ocupe todo el ancho en PC */
+    padding: 1.5rem 6rem;
+    cursor: pointer;
+    font-size: 1.8rem;
+}
+
+/* Ajuste Responsive para que el mensaje ocupe todo el ancho */
+@media (min-width: 768px) {
+    .contenedor-campos {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2rem;
+    }
+    
+    /* El campo Email y Mensaje ocupan las dos columnas */
+    .campo:nth-child(3),
+    .campo:nth-child(4) {
+        grid-column: 1 / 3;
+    }
+}
 /* -----------------------------------------------------------
     FOOTER
 ----------------------------------------------------------- */
@@ -342,4 +467,118 @@ footer p {
     text-align: center;
     margin: 0;
     font-size: 1.4rem;
+}
+/* -----------------------------------------------------------
+   ESTILOS BOTONES (Color Rosado Global)
+----------------------------------------------------------- */
+.boton-hero, .boton-franja, .boton {
+    background-color: var(--rosado) !important; /* Forzamos el color de la franja superior */
+    color: var(--blanco);
+    transition: background-color 0.3s ease;
+}
+
+.boton-hero:hover, .boton-franja:hover, .boton:hover {
+    background-color: var(--rosadoclaro) !important;
+}
+
+/* -----------------------------------------------------------
+   7. FRANJA DESTACADA (Estilo Central)
+----------------------------------------------------------- */
+.franja-destacada {
+    background-color: var(--rosado); /* Color de la barra superior */
+    padding: 6rem 0;
+    text-align: center;
+    color: var(--blanco);
+    margin: 4rem 0;
+}
+
+.contenido-franja h2 {
+    color: var(--blanco);
+    font-family: "Playfair Display", serif;
+    font-size: 3.5rem;
+    margin-bottom: 2rem;
+}
+
+.contenido-franja p {
+    font-size: 1.8rem;
+    max-width: 800px;
+    margin: 0 auto 3rem auto;
+    font-weight: 300;
+}
+
+.boton-franja {
+    display: inline-block;
+    padding: 1.2rem 4rem;
+    border: 2px solid var(--blanco);
+    text-decoration: none;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 1.4rem;
+    border-radius: 0.3rem;
+}
+/* --- SECCIÓN CÓMO PUEDO AYUDARTE --- */
+.como-ayudar {
+    display: grid;
+    grid-template-columns: 1fr; /* Una columna en móvil */
+    gap: 4rem;
+    align-items: center;
+    padding: 8rem 0;
+}
+
+@media (min-width: 768px) {
+    .como-ayudar {
+        grid-template-columns: 1fr 1fr; /* Dos columnas en PC */
+    }
+}
+
+/* El Recuadro Verde (Izquierda) */
+.recuadro-verde-habilidades {
+    background-color: var(--verdoso);
+    padding: 4rem;
+    border-radius: 1rem;
+    border: 8px solid var(--verdoso); /* Manteniendo tu estilo de borde grueso */
+    box-shadow: 0px 10px 20px rgba(0,0,0,0.1);
+    color: var(--blanco);
+}
+
+.recuadro-verde-habilidades h3 {
+    color: var(--blanco);
+    text-align: left;
+    margin-top: 0;
+    font-size: 2.8rem;
+}
+
+.lista-tecnica {
+    list-style: none;
+    padding: 0;
+}
+
+.lista-tecnica li {
+    font-size: 1.6rem;
+    margin-bottom: 1.5rem;
+    line-height: 1.4;
+    border-bottom: 1px solid rgba(255,255,255,0.2);
+    padding-bottom: 0.5rem;
+}
+
+.lista-tecnica li strong {
+    display: block;
+    text-transform: uppercase;
+    font-size: 1.2rem;
+    letter-spacing: 1px;
+}
+
+/* Texto y Botón (Derecha) */
+.texto-ayuda {
+    text-align: left;
+}
+
+.texto-ayuda h2 {
+    text-align: left;
+    margin-top: 0;
+}
+
+.texto-ayuda p {
+    font-size: 1.8rem;
+    margin-bottom: 2rem;
 }
