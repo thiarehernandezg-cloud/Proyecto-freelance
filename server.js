@@ -11,11 +11,11 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static(path.join(__dirname, '/')));
 
+// 1. Al entrar a la web, cargamos el portafolio (index)
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'index.html'));
 });
 
-// SOLO ESTE BLOQUE POST DEBE EXISTIR
 app.post('/enviar-contacto', async (req, res) => {
     const { nombre, telefono, email, mensaje } = req.body;
     console.log("🚀 Intento de envío recibido de:", nombre);
@@ -23,29 +23,50 @@ app.post('/enviar-contacto', async (req, res) => {
     const transporter = nodemailer.createTransport({
         host: "smtp.gmail.com",
         port: 465,
-        secure: true, // Use SSL
+        secure: true, 
         auth: {
             user: process.env.EMAIL_USER,
             pass: process.env.EMAIL_PASS
         }
     });
 
-    const mailOptions = {
+   const mailOptions = {
         from: `"${nombre}" <${process.env.EMAIL_USER}>`,
         to: process.env.EMAIL_USER,
         replyTo: email,
-        subject: `Nuevo mensaje de contacto de ${nombre}`,
-        text: `Nombre: ${nombre}\nTeléfono: ${telefono}\nEmail: ${email}\nMensaje: ${mensaje}`
+        subject: `🚀 Nuevo Mensaje: ${nombre}`,
+        html: `
+            <div style="background-color: #eceae3; padding: 40px; font-family: sans-serif;">
+                <div style="max-width: 600px; margin: 0 auto; background-color: #ffffff; border-radius: 15px; overflow: hidden; border: 1px solid #c9b6b4;">
+                    <div style="background-color: #957b71; padding: 30px; text-align: center;">
+                        <h1 style="color: #ffffff; margin: 0; font-size: 24px;">NUEVO CONTACTO</h1>
+                    </div>
+                    <div style="padding: 30px; color: #ae978a;">
+                        <p>Has recibido una nueva propuesta:</p>
+                        <div style="background-color: #fcfaf7; border-radius: 8px; padding: 20px; border-left: 5px solid #c9b6b4;">
+                            <p><strong>Nombre:</strong> ${nombre}</p>
+                            <p><strong>Email:</strong> ${email}</p>
+                            <p><strong>Teléfono:</strong> ${telefono}</p>
+                        </div>
+                        <p style="margin-top: 20px;"><strong>Mensaje:</strong></p>
+                        <p style="background-color: #eceae3; padding: 15px; border-radius: 5px;">${mensaje}</p>
+                    </div>
+                </div>
+            </div>
+        `
     };
 
     try {
         console.log(" Intentando enviar correo a Gmail...");
         await transporter.sendMail(mailOptions);
-        console.log(" ¡Correo enviado exitosamente!");
-        res.send('<h1>¡Mensaje enviado con éxito! Revisa tu bandeja de entrada.</h1>');
+        console.log("¡Correo enviado exitosamente!");
+        
+        // 2. DESPUÉS de enviar el correo, mostramos la página de gracias
+        res.sendFile(path.join(__dirname, 'gracias.html'));
+
     } catch (error) {
-        console.log(" ERROR CRÍTICO:", error);
-        res.status(500).send('<h1>Hubo un error al enviar el mensaje.</h1>');
+        console.error("Error al enviar email");
+        res.status(500).send('<h1>Error al enviar el mensaje</h1>');
     }
 });
 
