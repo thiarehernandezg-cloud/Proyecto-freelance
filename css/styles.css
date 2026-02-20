@@ -18,6 +18,10 @@
 html {
     font-size: 62.5%; /* 1rem = 10px */
     box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+section{
+    scroll-margin-top: 5rem;
 }
 
 *, *:before, *:after {
@@ -53,7 +57,7 @@ h2 {
 }
 
 .contenedor {
-    width: 95%;
+    width: 90%;
     max-width: 120rem;
     margin: 0 auto;
 }
