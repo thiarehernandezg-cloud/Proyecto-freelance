@@ -20,18 +20,19 @@ app.post('/enviar-contacto', async (req, res) => {
     const { nombre, telefono, email, mensaje } = req.body;
     console.log("🚀 Intento de envío recibido de:", nombre);
 
- const transporter = nodemailer.createTransport({
-        host: "smtp.gmail.com",
-        port: 587,
-        secure: false, 
-        auth: {
-            user: process.env.EMAIL_USER,
-            pass: process.env.EMAIL_PASS
-        },
-        tls: {
-            rejectUnauthorized: false // Esto ayuda a evitar bloqueos en servidores externos
-        }
-    });
+const transporter = nodemailer.createTransport({
+    host: "smtp.gmail.com",
+    port: 465, // Volvemos al 465 que es más directo para Gmail
+    secure: true, // Debe ser true para el puerto 465
+    auth: {
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASS
+    },
+    tls: {
+        // Esto fuerza a que no falle si hay temas de red del servidor
+        rejectUnauthorized: false
+    }
+});
 
    const mailOptions = {
         from: `"${nombre}" <${process.env.EMAIL_USER}>`,
