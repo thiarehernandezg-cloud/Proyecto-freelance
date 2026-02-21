@@ -20,13 +20,16 @@ app.post('/enviar-contacto', async (req, res) => {
     const { nombre, telefono, email, mensaje } = req.body;
     console.log("🚀 Intento de envío recibido de:", nombre);
 
-    const transporter = nodemailer.createTransport({
+ const transporter = nodemailer.createTransport({
         host: "smtp.gmail.com",
-      port: 587,
-        secure: false,
+        port: 587,
+        secure: false, 
         auth: {
             user: process.env.EMAIL_USER,
             pass: process.env.EMAIL_PASS
+        },
+        tls: {
+            rejectUnauthorized: false // Esto ayuda a evitar bloqueos en servidores externos
         }
     });
 
@@ -65,7 +68,7 @@ app.post('/enviar-contacto', async (req, res) => {
         res.sendFile(path.join(__dirname, 'gracias.html'));
 
     } catch (error) {
-        console.error("Error al enviar email");
+        console.error("❌ Error detallado:", error);
         res.status(500).send('<h1>Error al enviar el mensaje</h1>');
     }
 });
