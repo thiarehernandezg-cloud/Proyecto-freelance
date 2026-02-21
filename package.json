@@ -3,10 +3,10 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-"scripts": {
+  "scripts": {
     "start": "node server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
-},
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/thiarehernandezg-cloud/Proyecto-freelance.git"
@@ -21,6 +21,6 @@
   "dependencies": {
     "dotenv": "^17.3.1",
     "express": "^5.2.1",
-    "nodemailer": "^8.0.1"
+    "resend": "^6.9.2"
   }
 }
