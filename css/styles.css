@@ -266,7 +266,73 @@ textarea.input-text { height: 12rem; }
     .navegacion ul { justify-content: center; }
     .nombre-titulo { text-align: center; }
 }
+@media (max-width: 768px) {
 
+    .hero-cv {
+        padding: 4rem 0;
+        gap: 3rem;
+        text-align: center;
+    }
+
+    .contenido-hero-izq {
+        align-items: center;
+    }
+
+    .extracto-perfil {
+        max-width: 90%;
+        margin: 0 auto;
+    }
+
+    .recuadro-foto {
+        width: 26rem;
+        height: 34rem;
+    }
+
+    .tagline {
+        font-size: 1.6rem;
+    }
+}
+@media (max-width: 768px) {
+
+    .formulario {
+        padding: 3rem 2rem;
+        margin: 2rem auto;
+        width: 95%;
+    }
+
+    .formulario h2 {
+        font-size: 2.8rem;
+    }
+
+    .campo {
+        margin-bottom: 2rem;
+    }
+
+    .input-text {
+        font-size: 1.5rem;
+        padding: 1.2rem;
+    }
+
+    .boton-enviar {
+        margin-top: 3rem;
+    }
+
+    .formulario .boton {
+        width: 100%;
+        padding: 1.5rem;
+    }
+}
+@media (max-width: 768px) {
+
+    .navegacion ul {
+        flex-wrap: wrap;
+        gap: 1.5rem;
+    }
+
+    .navegacion a {
+        font-size: 1.4rem;
+    }
+}
 /* 9. FOOTER */
 footer { background-color: var(--rosado); 
       padding: 0.5rem 0;
