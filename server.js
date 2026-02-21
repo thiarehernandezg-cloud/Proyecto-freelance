@@ -22,14 +22,14 @@ app.post('/enviar-contacto', async (req, res) => {
 
 const transporter = nodemailer.createTransport({
     host: "smtp.gmail.com",
-    port: 465, // Volvemos al 465 que es más directo para Gmail
-    secure: true, // Debe ser true para el puerto 465
+    port: 587,             // Cambiamos de 465 a 587
+    secure: false,         // Debe ser false para el puerto 587
     auth: {
         user: process.env.EMAIL_USER,
         pass: process.env.EMAIL_PASS
     },
     tls: {
-        // Esto fuerza a que no falle si hay temas de red del servidor
+        // Esto ayuda a evitar errores de certificados en entornos de nube
         rejectUnauthorized: false
     }
 });
